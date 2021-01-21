@@ -1,43 +1,63 @@
 :root{
-    --hrc1:rgba(255,0,0,0.5);
-    --hrc2:rgba(255,0,0,0.75);
-    --hrc3:rgba(255,0,0,1);
+    --hrc1:rgba(247,0,0,0.8);
+    --hrc2:rgb(243, 227, 7);
+    --hrc3:rgba(89, 255, 13, 0.8);
 
-    --prc1:rgba(0,255,0,0.5);
-    --prc2:rgba(0,255,0,0.75);
-    --prc3:rgba(0,255,0,1);
+    --hrcf:rgb(40, 40, 41);
+
+    --prc1:rgba(0, 195, 255, 0.5);
+    --prc2:rgba(0, 89, 255, 0.692);
+    --prc3:rgb(0, 4, 255);
+}
+.heading{
+    text-align: center;
+    font-family: fantasy;
 }
 
 table{
+    font-family: "Cambria, Cochin", Georgia, Times, 'Times New Roman', serif;
+    position: absolute;
+    top: 10%;
+    left: 10%;
     text-align: center;
+    width:80vw;
+    height: 80vh;
 }
 td{
-    font-size: larger;
+    color: white;
+    border: black;
+    background-color: rgba(20, 20, 20,1);
+    font-size: 22px;
     font-weight: bold;
     border-style: solid;
     border-radius: 7px;
 }
-.topic{
+.title{
     text-transform: capitalize;
+    background-color: rgb(121, 121, 121);
+
 
 }
-.hrs1{
+.clp1{
     background-color: var(--hrc1);
+    color:var(--hrcf);
 }
-.hrs2{
+.clp2{
     background-color: var(--hrc2);
+    color:var(--hrcf);
 }
-.hrs3{
+.clp3{
     background-color: var(--hrc3);
+    color:var(--hrcf);
 }
 
-.per1{
+.clg1{
     background-color: var(--prc1);
     
 }
-.per2{
+.clg2{
     background-color: var(--prc2);
 }
-.per3{
+.clg3{
     background-color: var(--prc3);
 }

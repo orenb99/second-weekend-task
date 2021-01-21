@@ -94,6 +94,7 @@ for(let sub of arr){
 
 
 // DOM manipulation
+document.write('<h1 class="heading"> My Subjects Table</h1>');
 document.write('<table id="table">');
 document.write('<tr>');
 for(let prop in arr[0]){
@@ -111,7 +112,7 @@ for(let prop in arr[0]){
             str+=" ";
     }
     
-    document.write('<td class="'+temp+' topic">'+str+'</td>');
+    document.write('<td class="'+temp+' title">'+str+'</td>');
 }
 document.write('</tr>')
 
@@ -123,20 +124,20 @@ for(let sub of arr){
         if(prop==="tasksGiven"){
             let hrs=parseInt(sub["totalTimeSpent"]);
             if(hrs<=2)
-                cls="hrs1";
+                cls="clg1";
             if(hrs>2&&hrs<=5)
-                cls="hrs2";
+                cls="clg2";
             if(hrs>5)
-                cls="hrs3";
+                cls="clg3";
         }
         if(prop==="tasksPercentage"){
             let per=parseInt(sub[prop].replace("%",""));
             if(per<=50)
-                cls="per1";
+                cls="clp1";
             if(per>50&&per<=75)
-                cls="per2";
+                cls="clp2";
             if(per>75)
-                cls="per3";
+                cls="clp3";
         }
         if(prop==="startedAt"||prop==="finishedAt")
         {
