@@ -12,10 +12,15 @@ table{
     text-align: center;
 }
 td{
+    font-size: larger;
+    font-weight: bold;
     border-style: solid;
     border-radius: 7px;
 }
+.topic{
+    text-transform: capitalize;
 
+}
 .hrs1{
     background-color: var(--hrc1);
 }

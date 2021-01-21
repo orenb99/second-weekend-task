@@ -87,8 +87,9 @@ for(let sub of arr){
                 str+="."+d.getMinutes()*100/60;
             
 
-            sub.tasksPercentage=Math.round((sub.tasksFinished/sub.tasksGiven)*100)+"%";
             sub.totalTimeSpent=str;
+            sub.tasksPercentage=Math.round((sub.tasksFinished/sub.tasksGiven)*100)+"%";
+            
 }
 
 
@@ -96,7 +97,14 @@ for(let sub of arr){
 document.write('<table id="table">');
 document.write('<tr>');
 for(let prop in arr[0]){
-    document.write('<td class="'+prop+'">'+prop+'</td>');
+    let str="";
+    for(let i=0;i<prop.length;i++){
+        str+=prop.charAt(i);
+        if(prop.charAt(i+1)===prop.charAt(i+1).toUpperCase())
+            str+=" ";
+    }
+    
+    document.write('<td class="'+prop+' topic">'+str+'</td>');
 }
 document.write('</tr>')
 
@@ -113,9 +121,8 @@ for(let sub of arr){
             if(hrs>5)
                 cls="hrs3";
         }
-        if(prop==="taskPercentage"){
+        if(prop==="tasksPercentage"){
             let per=parseInt(sub[prop].replace("%",""));
-            console.log(per+","+typeof per);
             if(per<=50)
                 cls="per1";
             if(per>50&&per<=75)
