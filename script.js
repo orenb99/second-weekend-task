@@ -84,7 +84,7 @@ for(let sub of arr){
             let d=new Date(sub.finishedAt.getTime()-sub.startedAt.getTime());
             let str=d.getHours();
             if(d.getMinutes()!==0)
-                str+=":"+d.getMinutes();
+                str+="."+d.getMinutes()*100/60;
             
 
             sub.tasksPercentage=Math.round((sub.tasksFinished/sub.tasksGiven)*100)+"%";
@@ -96,7 +96,7 @@ for(let sub of arr){
 document.write('<table id="table">');
 document.write('<tr>');
 for(let prop in arr[0]){
-    document.write('<td>'+prop+'</td>');
+    document.write('<td class="'+prop+'">'+prop+'</td>');
 }
 document.write('</tr>')
 
@@ -112,10 +112,10 @@ for(let sub of arr){
             if(sub[prop].getMinutes()>=0&&sub[prop].getMinutes()<=9)
                 date=date.replace(":",":0");
 
-            document.write('<td>'+date+'<br> ');
+            document.write('<td class="'+prop+'">'+date+'<br> ');
             }
         else
-            document.write('<td>'+sub[prop]+' </td> ');
+            document.write('<td class="'+prop+" "+cls+'">'+sub[prop]+' </td>');
     }
     document.write('</tr>');
 }
