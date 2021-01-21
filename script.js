@@ -63,7 +63,7 @@ let subject8={
 
 let subject9={
     topic: "HTML & CSS",
-    startedAt: new Date("2021-01-19:14:30"),
+    startedAt: new Date("2021-01-18:14:30"),
     finishedAt: new Date("2021-01-19:20:30"),
     tasksGiven: 9,
     tasksFinished: 8
@@ -84,14 +84,26 @@ let arr=[subject1,subject2,subject3,subject4,subject5,subject6,subject7,subject8
 document.write('<table id="table">');
 document.write('<tr>');
 for(let prop in arr[0]){
-    document.write('<td>'+prop+'<td>');
+    document.write('<td>'+prop+'</td>');
 }
 document.write('</tr>')
     
 for(let sub of arr){
     document.write('<tr>');
     for(let prop in sub){
-        document.write('<td>'+sub[prop]+' </td> ');
+        if(prop==="startedAt"||prop==="finishedAt")
+        {
+            let date=String(sub[prop].getHours())+':'+String(sub[prop].getMinutes());
+            if(sub[prop].getHours()>=0&&sub[prop].getHours()<=9)
+                date="0"+date;
+
+            if(sub[prop].getMinutes()>=0&&sub[prop].getMinutes()<=9)
+                date=date.replace(":",":0");
+
+            document.write('<td>'+date+'<br> ');
+            }
+        else
+            document.write('<td>'+sub[prop]+' </td> ');
     }
     document.write('</tr>');
 }
