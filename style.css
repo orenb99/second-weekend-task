@@ -1,3 +1,13 @@
+:root{
+    --hrc1:rgba(255,0,0,0.5);
+    --hrc2:rgba(255,0,0,0.75);
+    --hrc3:rgba(255,0,0,1);
+
+    --prc1:rgba(0,255,0,0.5);
+    --prc2:rgba(0,255,0,0.75);
+    --prc3:rgba(0,255,0,1);
+}
+
 table{
     text-align: center;
 }
@@ -5,5 +15,24 @@ td{
     border-style: solid;
     border-radius: 7px;
 }
-.totalTimeSpent{
+
+.hrs1{
+    background-color: var(--hrc1);
+}
+.hrs2{
+    background-color: var(--hrc2);
+}
+.hrs3{
+    background-color: var(--hrc3);
+}
+
+.per1{
+    background-color: var(--prc1);
+    
+}
+.per2{
+    background-color: var(--prc2);
+}
+.per3{
+    background-color: var(--prc3);
 }

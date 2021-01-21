@@ -17,7 +17,7 @@ let subject2={
 let subject3={
     topic: "CSS",
     startedAt: new Date("2021-01-13:14:00"),
-    finishedAt: new Date("2021-01-13:20:30"),
+    finishedAt: new Date("2021-01-13:15:30"),
     tasksGiven: 9,
     tasksFinished: 5
 };
@@ -40,7 +40,7 @@ let subject5={
 let subject6={
     topic: "Functions",
     startedAt: new Date("2021-01-16:16:00"),
-    finishedAt: new Date("2021-01-16:23:00"),
+    finishedAt: new Date("2021-01-16:19:00"),
     tasksGiven: 5,
     tasksFinished: 2
 };
@@ -48,7 +48,7 @@ let subject6={
 let subject7={
     topic: "Objects",
     startedAt: new Date("2021-01-17:07:00"),
-    finishedAt: new Date("2021-01-17:09:00"),
+    finishedAt: new Date("2021-01-17:09:45"),
     tasksGiven: 6,
     tasksFinished: 4
 };
@@ -82,7 +82,7 @@ let arr=[subject1,subject2,subject3,subject4,subject5,subject6,subject7,subject8
 
 for(let sub of arr){
             let d=new Date(sub.finishedAt.getTime()-sub.startedAt.getTime());
-            let str=d.getHours();
+            let str=d.getHours()-2;
             if(d.getMinutes()!==0)
                 str+="."+d.getMinutes()*100/60;
             
@@ -101,8 +101,28 @@ for(let prop in arr[0]){
 document.write('</tr>')
 
 for(let sub of arr){
+    let cls="";
     document.write('<tr>');
     for(let prop in sub){
+        if(prop==="totalTimeSpent"){
+            let hrs=parseInt(sub[prop]);
+            if(hrs<=2)
+                cls="hrs1";
+            if(hrs>2&&hrs<=5)
+                cls="hrs2";
+            if(hrs>5)
+                cls="hrs3";
+        }
+        if(prop==="taskPercentage"){
+            let per=parseInt(sub[prop].replace("%",""));
+            console.log(per+","+typeof per);
+            if(per<=50)
+                cls="per1";
+            if(per>50&&per<=75)
+                cls="per2";
+            if(per>75)
+                cls="per3";
+        }
         if(prop==="startedAt"||prop==="finishedAt")
         {
             let date=String(sub[prop].getHours())+':'+String(sub[prop].getMinutes());
@@ -115,7 +135,7 @@ for(let sub of arr){
             document.write('<td class="'+prop+'">'+date+'<br> ');
             }
         else
-            document.write('<td class="'+prop+" "+cls+'">'+sub[prop]+' </td>');
+            document.write('<td class="'+prop+' '+cls+'">'+sub[prop]+' </td>');
     }
     document.write('</tr>');
 }
