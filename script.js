@@ -97,14 +97,21 @@ for(let sub of arr){
 document.write('<table id="table">');
 document.write('<tr>');
 for(let prop in arr[0]){
+    let temp="";
+    if(prop==="totalTimeSpent")
+        temp="tasksGiven";
+    else if(prop==="tasksGiven")
+        temp="totalTimeSpent";
+    else
+        temp=prop;
     let str="";
-    for(let i=0;i<prop.length;i++){
-        str+=prop.charAt(i);
-        if(prop.charAt(i+1)===prop.charAt(i+1).toUpperCase())
+    for(let i=0;i<temp.length;i++){
+        str+=temp.charAt(i);
+        if(temp.charAt(i+1)===temp.charAt(i+1).toUpperCase())
             str+=" ";
     }
     
-    document.write('<td class="'+prop+' topic">'+str+'</td>');
+    document.write('<td class="'+temp+' topic">'+str+'</td>');
 }
 document.write('</tr>')
 
