@@ -80,6 +80,13 @@ let subject10={
 let arr=[subject1,subject2,subject3,subject4,subject5,subject6,subject7,subject8,subject9,subject10];
 
 
+for(let sub of arr){
+            let d=new Date(sub.finishedAt.getTime()-sub.startedAt.getTime());
+            let str=d.getHours()+":"+d.getMinutes();
+            sub.total=str;
+}
+
+
 // DOM manipulation
 document.write('<table id="table">');
 document.write('<tr>');
@@ -87,7 +94,7 @@ for(let prop in arr[0]){
     document.write('<td>'+prop+'</td>');
 }
 document.write('</tr>')
-    
+
 for(let sub of arr){
     document.write('<tr>');
     for(let prop in sub){
