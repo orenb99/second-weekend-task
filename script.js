@@ -82,7 +82,10 @@ let arr=[subject1,subject2,subject3,subject4,subject5,subject6,subject7,subject8
 
 for(let sub of arr){
             let d=new Date(sub.finishedAt.getTime()-sub.startedAt.getTime());
-            let str=d.getHours()+":"+d.getMinutes();
+            let str=d.getHours();
+            if(d.getMinutes()!==0)
+                str+=":"+d.getMinutes();
+            
             sub.total=str;
 }
 
