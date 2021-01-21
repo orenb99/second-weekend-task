@@ -119,8 +119,9 @@ for(let sub of arr){
     let cls="";
     document.write('<tr>');
     for(let prop in sub){
-        if(prop==="totalTimeSpent"){
-            let hrs=parseInt(sub[prop]);
+        cls="";
+        if(prop==="tasksGiven"){
+            let hrs=parseInt(sub["totalTimeSpent"]);
             if(hrs<=2)
                 cls="hrs1";
             if(hrs>2&&hrs<=5)
@@ -148,6 +149,10 @@ for(let sub of arr){
 
             document.write('<td class="'+prop+'">'+date+'<br> ');
             }
+        else if(prop==="tasksGiven")
+            document.write('<td class="totalTimeSpent '+cls+'">'+sub["totalTimeSpent"]+'<br> ');
+        else if(prop==="totalTimeSpent")
+            document.write('<td class="tasksGiven '+cls+'">'+sub["tasksGiven"]+'<br> ');
         else
             document.write('<td class="'+prop+' '+cls+'">'+sub[prop]+' </td>');
     }
