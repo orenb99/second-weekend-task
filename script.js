@@ -86,7 +86,9 @@ for(let sub of arr){
             if(d.getMinutes()!==0)
                 str+=":"+d.getMinutes();
             
-            sub.total=str;
+
+            sub.tasksPercentage=Math.round((sub.tasksFinished/sub.tasksGiven)*100)+"%";
+            sub.totalTimeSpent=str;
 }
 
 
