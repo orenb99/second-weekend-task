@@ -8,16 +8,29 @@ function taskGeneration(sub){
 }
 
 function timeGenerator(sub){
-let start=new Date((Math.floor(Math.random()*12)+1)+"/"+(Math.floor(Math.random()*30)+1)+"/"+(Math.floor(Math.random()*2)+2020));
-start.setHours(Math.floor(Math.random()*23));
-start.setMinutes(Math.floor(Math.random()*11)*5);
-let finish=new Date(start);
-finish.setHours(Math.floor(Math.random()*23));
-finish.setMinutes(Math.floor(Math.random()*11)*5);
-if(finish.getTime()<=start.getTime())
-    finish.setDate(start.getDate()+1);
-sub.startedAt=start;
-sub.finishedAt=finish;
+    let start=new Date((Math.floor(Math.random()*12)+1)+"/"+(Math.floor(Math.random()*30)+1)+"/"+(Math.floor(Math.random()*2)+2020));
+    start.setHours(Math.floor(Math.random()*23));
+    start.setMinutes(Math.floor(Math.random()*11)*5);
+    let finish=new Date(start);
+    finish.setHours(Math.floor(Math.random()*23));
+    finish.setMinutes(Math.floor(Math.random()*11)*5);
+    if(finish.getTime()<=start.getTime())
+         finish.setDate(start.getDate()+1);
+    sub.startedAt=start;
+    sub.finishedAt=finish;
+}
+
+function timeCalc(sub){
+    let str="";
+    let hrs=sub.finishedAt.getHours()-sub.startedAt.getHours();
+    let mins=sub.finishedAt.getMinutes()-sub.startedAt.getMinutes();
+    if(sub.finishedAt.getDate()!==sub.startedAt.getDate())
+        hrs+=24;
+    str+=""+hrs;
+    if(mins!==0)
+        str+="."+mins;
+    sub.totalTimeSpent=str;
+    
 }
 
 let subject1={
@@ -62,20 +75,7 @@ let arr=[subject1,subject2,subject3,subject4,subject5,subject6,subject7,subject8
 for(let sub of arr){
     taskGeneration(sub);
     timeGenerator(sub);
-    time(sub);
-}
-
-function time(sub){
-    let str="";
-    let hrs=sub.finishedAt.getHours()-sub.startedAt.getHours();
-    let mins=sub.finishedAt.getMinutes()-sub.startedAt.getMinutes();
-    if(sub.finishedAt.getDate()!==sub.startedAt.getDate())
-        hrs+=24;
-    str+=""+hrs;
-    if(mins!==0)
-        str+="."+mins;
-    sub.totalTimeSpent=str;
-    
+    timeCalc(sub);
 }
 
 // DOM manipulation
@@ -91,11 +91,6 @@ document.body.append(table);
     table.append(tr);
     for(let prop in arr[0]){
         let temp="";
-        // if(prop==="totalTimeSpent")
-        //     temp="tasksGiven";
-        // else if(prop==="tasksGiven")
-        //     temp="totalTimeSpent";
-        // else
         temp=prop;
         let str="";
         for(let i=0;i<temp.length;i++){
@@ -120,11 +115,11 @@ for(let sub of arr){
         cls="";
         if(prop==="totalTimeSpent"){
             let hrs=parseInt(sub["totalTimeSpent"]);
-            if(hrs<=2)
+            if(hrs<=6)
                 cls="clg1";
-            if(hrs>2&&hrs<=5)
+            if(hrs>6&&hrs<=12)
                 cls="clg2";
-            if(hrs>5)
+            if(hrs>12)
                 cls="clg3";
         }
         if(prop==="tasksPercentage"){
