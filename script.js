@@ -24,11 +24,16 @@ function timeCalc(sub){
     let str="";
     let hrs=sub.finishedAt.getHours()-sub.startedAt.getHours();
     let mins=sub.finishedAt.getMinutes()-sub.startedAt.getMinutes();
-    if(sub.finishedAt.getDate()!==sub.startedAt.getDate())
-        hrs+=24;
-    str+=""+hrs;
+    if(mins<0)
+        mins+=60;
     if(mins!==0)
-        str+="."+mins;
+        mins="."+mins;
+    else 
+        mins="";
+    if(sub.finishedAt.getDate()!==sub.startedAt.getDate()){
+        hrs+=24;
+    }
+    str=hrs+""+mins;
     sub.totalTimeSpent=str;
     
 }
@@ -115,11 +120,11 @@ for(let sub of arr){
         cls="";
         if(prop==="totalTimeSpent"){
             let hrs=parseInt(sub["totalTimeSpent"]);
-            if(hrs<=6)
+            if(hrs<=8)
                 cls="clg1";
-            if(hrs>6&&hrs<=12)
+            if(hrs>8&&hrs<=16)
                 cls="clg2";
-            if(hrs>12)
+            if(hrs>16)
                 cls="clg3";
         }
         if(prop==="tasksPercentage"){
@@ -136,20 +141,11 @@ for(let sub of arr){
             let date=String(sub[prop].getHours())+':'+String(sub[prop].getMinutes());
             if(sub[prop].getHours()>=0&&sub[prop].getHours()<=9)
                 date="0"+date;
-
             if(sub[prop].getMinutes()>=0&&sub[prop].getMinutes()<=9)
                 date=date.replace(":",":0");
             td.setAttribute("class",prop);
             td.innerHTML=date+"<br>";
         }
-        // else if(prop==="tasksGiven"){
-        //     td.setAttribute("class","totalTimeSpent "+cls);
-        //     td.innerHTML=sub["totalTimeSpent"]+"<br>";
-        // }
-        // else if(prop==="totalTimeSpent"){
-        //     td.setAttribute("class","tasksGiven "+cls);
-        //     td.innerHTML=sub["tasksGiven"]+"<br>";
-        // }
         else{
             td.setAttribute("class",prop+" "+cls);
             td.innerHTML=sub[prop]+"<br>";
