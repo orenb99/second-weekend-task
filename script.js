@@ -94,7 +94,7 @@ for(let sub of arr){
 // DOM manipulation
 const h1=document.createElement("h1");
 h1.setAttribute("class","heading");
-h1.innerText="My Subjects Table";
+h1.innerText="My Subjects Table With DOM Manipulation";
 document.body.append(h1);
 
 const table=document.createElement("table");
