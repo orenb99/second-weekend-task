@@ -62,14 +62,18 @@ let arr=[subject1,subject2,subject3,subject4,subject5,subject6,subject7,subject8
 for(let sub of arr){
     taskGeneration(sub);
     timeGenerator(sub);
+    time(sub);
 }
 
-for(let sub of arr){
-    let d=new Date(sub.finishedAt.getTime()-sub.startedAt.getTime());
-    let str=d.getHours();
-    if(d.getMinutes()!==0)
-        str+="."+Math.round(d.getMinutes()*100/60);
-
+function time(sub){
+    let str="";
+    let hrs=sub.finishedAt.getHours()-sub.startedAt.getHours();
+    let mins=sub.finishedAt.getMinutes()-sub.startedAt.getMinutes();
+    if(sub.finishedAt.getDate()!==sub.startedAt.getDate())
+        hrs+=24;
+    str+=""+hrs;
+    if(mins!==0)
+        str+="."+mins;
     sub.totalTimeSpent=str;
     
 }
