@@ -1,84 +1,79 @@
 function taskGeneration(sub){
-    total=Math.floor(Math.random()*15)+1;
-    done=Math.floor(Math.random()*total)+1;
+    let total=Math.floor(Math.random()*15)+1;
+    let done=Math.floor(Math.random()*total)+1;
     sub.tasksFinished=done;
     sub.tasksGiven=total;
     sub.tasksPercentage=Math.round((sub.tasksFinished/sub.tasksGiven)*100)+"%";
 
 }
 
+function timeGenerator(sub){
+let start=new Date((Math.floor(Math.random()*12)+1)+"/"+(Math.floor(Math.random()*30)+1)+"/"+(Math.floor(Math.random()*2)+2020));
+start.setHours(Math.floor(Math.random()*23));
+start.setMinutes(Math.floor(Math.random()*11)*5);
+let finish=new Date(start);
+finish.setHours(Math.floor(Math.random()*23));
+finish.setMinutes(Math.floor(Math.random()*11)*5);
+if(finish.getTime()<=start.getTime())
+    finish.setDate(start.getDate()+1);
+sub.startedAt=start;
+sub.finishedAt=finish;
+}
+
 let subject1={
-    topic: "JavaScript",
-    startedAt: new Date("2021-01-11:13:00"),
-    finishedAt: new Date("2021-01-11:19:00"),
+    topic: "JavaScript"
 };
 let subject2={
-    topic: "HTML",
-    startedAt: new Date("2021-01-12:15:00"),
-    finishedAt: new Date("2021-01-12:19:30"),
+    topic: "HTML"
 };
 
 let subject3={
-    topic: "CSS",
-    startedAt: new Date("2021-01-13:14:00"),
-    finishedAt: new Date("2021-01-13:15:30"),
+    topic: "CSS"
 };
 
 let subject4={
-    topic: "GITHUB",
-    startedAt: new Date("2021-01-14:07:45"),
-    finishedAt: new Date("2021-01-14:19:00"),
+    topic: "GITHUB"
 };
 let subject5={
-    topic: "FCC",
-    startedAt: new Date("2021-01-15:13:00"),
-    finishedAt: new Date("2021-01-15:15:00"),
+    topic: "FCC"
 };
 
 let subject6={
-    topic: "Functions",
-    startedAt: new Date("2021-01-16:16:00"),
-    finishedAt: new Date("2021-01-16:19:00"),
+    topic: "Functions"
 };
 
 let subject7={
-    topic: "Objects",
-    startedAt: new Date("2021-01-17:07:00"),
-    finishedAt: new Date("2021-01-17:09:45"),
+    topic: "Objects"
 };
 
 let subject8={
-    topic: "DOM Manipulation",
-    startedAt: new Date("2021-01-18:12:00"),
-    finishedAt: new Date("2021-01-18:19:00"),
+    topic: "DOM Manipulation"
 };
 
 let subject9={
-    topic: "HTML & CSS",
-    startedAt: new Date("2021-01-18:14:30"),
-    finishedAt: new Date("2021-01-19:20:30"),
+    topic: "HTML & CSS"
 };
 
 let subject10={
-    topic: "Arrays",
-    startedAt: new Date("2021-01-20:13:00"),
-    finishedAt: new Date("2021-01-20:14:00"),
+    topic: "Arrays"
 };
-
 let arr=[subject1,subject2,subject3,subject4,subject5,subject6,subject7,subject8,subject9,subject10];
 
 for(let sub of arr){
-            let d=new Date(sub.finishedAt.getTime()-sub.startedAt.getTime());
-            let str=d.getHours()-2;
-            if(d.getMinutes()!==0)
-                str+="."+d.getMinutes()*100/60;
-
-            sub.totalTimeSpent=str;
-            
-}
-for(let sub of arr){
     taskGeneration(sub);
+    timeGenerator(sub);
 }
+
+for(let sub of arr){
+    let d=new Date(sub.finishedAt.getTime()-sub.startedAt.getTime());
+    let str=d.getHours();
+    if(d.getMinutes()!==0)
+        str+="."+Math.round(d.getMinutes()*100/60);
+
+    sub.totalTimeSpent=str;
+    
+}
+
 // DOM manipulation
 const h1=document.createElement("h1");
 h1.setAttribute("class","heading");
